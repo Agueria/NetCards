@@ -1,0 +1,185 @@
+/* styles.css — NetCards.
+ *
+ * Mobile-first: the base rules target a phone, @media (min-width) rules add the wider layouts.
+ * All colours come from CSS variables on :root, so dark mode is a single media query that
+ * re-assigns the variables instead of touching every rule.
+ */
+
+:root {
+  --bg: #f8fafc;             /* page background */
+  --surface: #ffffff;        /* cards, dialogs, tiles */
+  --text: #0f172a;           /* main text */
+  --muted: #64748b;          /* secondary text (meta, labels) */
+  --border: #e2e8f0;
+  --primary: #1d4ed8;        /* brand blue: top bar, primary buttons, bars */
+  --primary-text: #ffffff;
+  --danger: #dc2626;         /* delete, "Wrong" */
+  --success: #16a34a;        /* "Correct" */
+  --warning-bg: #fef3c7;     /* offline banner */
+  --warning-text: #92400e;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Dark mode follows the operating system setting; only the variables change. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+    --primary: #3b82f6;
+    --warning-bg: #422006;
+    --warning-text: #fde68a;
+    --shadow: none;
+  }
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; } /* iOS Safari: do not enlarge text in landscape */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; /* system font: no download, no layout shift */
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+a { color: var(--primary); }
+h1 { font-size: 1.5rem; margin: 0; }
+h2 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+p { margin: 0 0 0.5rem; }
+/* The hidden attribute is used everywhere by JS (element.hidden = true). !important makes sure
+   no display rule (e.g. .btn { display: inline-flex }) can accidentally override it. */
+[hidden] { display: none !important; }
+
+.container { max-width: 720px; margin: 0 auto; padding: 16px; }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--primary); color: var(--primary-text);
+}
+.brand { color: inherit; text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+.nav { display: flex; gap: 4px; }
+.nav a { color: inherit; text-decoration: none; padding: 6px 12px; border-radius: 999px; opacity: 0.85; }
+.nav a.active { background: rgba(255, 255, 255, 0.2); opacity: 1; } /* set by the router */
+
+/* ---------- Offline banner ---------- */
+.banner { background: var(--warning-bg); color: var(--warning-text); padding: 8px 16px; text-align: center; font-size: 0.9rem; }
+
+/* ---------- Buttons ---------- */
+/* min-height 44px = recommended minimum touch target size on phones. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 44px; padding: 8px 16px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); color: var(--text);
+  font: inherit; font-weight: 600; cursor: pointer; text-decoration: none;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+/* Visible focus ring for keyboard users; :focus-visible does not show it after a mouse click. */
+.btn:focus-visible, .card-row:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.btn-primary { background: var(--primary); border-color: var(--primary); color: var(--primary-text); }
+.btn-danger { background: var(--danger); border-color: var(--danger); color: #fff; }
+.btn-success { background: var(--success); border-color: var(--success); color: #fff; }
+.btn-ghost { background: transparent; border-color: transparent; color: var(--primary); }
+.btn-small { min-height: 32px; padding: 4px 10px; font-size: 0.85rem; }
+.btn-big { flex: 1; min-height: 56px; font-size: 1.05rem; } /* Study screen: easy to tap */
+.btn-study-all { width: 100%; margin: 12px 0; }
+.btn.recording { background: var(--danger); border-color: var(--danger); color: #fff; } /* mic is live */
+
+/* ---------- Shared layout pieces ---------- */
+.view-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.view-header h1 { flex: 1; }
+.back-link { display: inline-block; margin-bottom: 8px; }
+.empty { color: var(--muted); text-align: center; padding: 32px 16px; } /* "No decks yet" style messages */
+.hint { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; font-size: 0.9rem; }
+.install-area { margin-bottom: 8px; }
+
+/* ---------- Decks screen ---------- */
+.deck-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 560px) { .deck-grid { grid-template-columns: 1fr 1fr; } } /* two columns on tablets/desktop */
+.deck-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+.deck-card h2 { margin: 0 0 4px; font-size: 1.1rem; }
+.deck-meta { margin: 0 0 12px; color: var(--muted); font-size: 0.9rem; }
+.deck-actions { display: flex; gap: 8px; }
+.library { margin-top: 24px; }
+.library-item { display: flex; align-items: center; gap: 12px; padding: 12px; margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.library-item .grow { flex: 1; }
+.library-item p { margin: 0; }
+
+/* ---------- Deck screen (card list) ---------- */
+.card-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+/* Each row is a <button> so it is keyboard-accessible; these rules make it look like a card. */
+.card-row { width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; font: inherit; color: inherit; cursor: pointer; }
+.card-front { margin: 0; font-weight: 600; }
+.card-meta { margin: 4px 0 0; color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- Dialogs and forms ---------- */
+/* <dialog> + showModal() gives a real modal (Escape closes it, focus stays inside) with no JS library. */
+dialog.dialog {
+  width: min(92vw, 480px); max-height: 90vh; overflow: auto;
+  border: none; border-radius: var(--radius); padding: 20px;
+  background: var(--surface); color: var(--text);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+dialog::backdrop { background: rgba(15, 23, 42, 0.5); }
+.form { display: flex; flex-direction: column; gap: 12px; }
+.form h2 { margin: 0; }
+.form-field { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 0.9rem; }
+.form-field input, .form-field textarea { font: inherit; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
+.dialog-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+
+/* ---------- Media fields in the card editor (photo, voice note) ---------- */
+.media-field { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; margin: 0; }
+.media-field legend { font-weight: 600; font-size: 0.9rem; padding: 0 4px; }
+.media-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.media-preview img { display: block; max-width: 100%; max-height: 200px; border-radius: 8px; margin-bottom: 8px; }
+.media-side { margin-top: 8px; font-size: 0.9rem; }
+.media-side label { margin-left: 8px; }
+.record-timer { font-variant-numeric: tabular-nums; color: var(--danger); font-weight: 600; } /* digits keep the same width */
+audio { width: 100%; margin-bottom: 8px; }
+dialog.camera video { width: 100%; max-height: 60vh; background: #000; border-radius: 8px; }
+.camera-error { color: var(--danger); }
+
+/* ---------- Study screen ---------- */
+.study { display: flex; flex-direction: column; gap: 12px; }
+.study-progress { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.study-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); min-height: 240px; }
+.study-face + .study-face { border-top: 1px dashed var(--border); margin-top: 16px; padding-top: 16px; } /* answer below question */
+.study-label { margin: 0; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.study-text { margin: 4px 0 0; font-size: 1.2rem; white-space: pre-wrap; } /* keep line breaks typed by the user */
+.study-image { display: block; max-width: 100%; border-radius: 8px; margin-top: 12px; }
+.study-audio { margin-top: 12px; }
+.study-actions { display: flex; gap: 12px; }
+.summary { text-align: center; padding: 32px 16px; }
+
+/* ---------- Stats screen ---------- */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat-tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-align: center; }
+.stat-value { display: block; font-size: 1.8rem; font-weight: 700; }
+.stat-label { color: var(--muted); font-size: 0.85rem; }
+/* Bar chart without a library: each .bar-fill gets an inline height in percent from JS. */
+.bars { display: flex; align-items: stretch; gap: 6px; height: 180px; padding: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.bar { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+.bar-track { flex: 1; width: 100%; display: flex; align-items: flex-end; }
+.bar-fill { width: 100%; min-height: 2px; background: var(--primary); border-radius: 4px 4px 0 0; }
+.bar-value { font-size: 0.75rem; margin-top: 2px; }
+.bar-label { max-width: 100%; font-size: 0.65rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 20;
+  display: flex; gap: 12px; align-items: center; max-width: 92vw;
+  padding: 12px 16px; border-radius: 999px;
+  background: var(--text); color: var(--bg); /* inverted colours so it stands out */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.toast button { background: transparent; border: none; color: var(--primary); font: inherit; font-weight: 700; cursor: pointer; }
+
+/* Hides an element visually but keeps it for screen readers and for <label> clicks (used for file inputs). */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

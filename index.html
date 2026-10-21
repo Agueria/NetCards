@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Without this viewport tag a phone would render the page at desktop width and zoom out. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NetCards – CCNA Flashcards</title>
+  <meta name="description" content="Offline-first flashcards for CCNA and networking students, with photo and voice notes and spaced repetition.">
+  <!-- Colour of the browser/status bar around the app. Must match theme_color in the manifest. -->
+  <meta name="theme-color" content="#1d4ed8">
+  <!-- The manifest makes the app installable (name, icons, start_url, display mode). -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <!-- iOS ignores manifest icons; it reads this tag and the apple-* metas instead. -->
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="NetCards">
+  <link rel="stylesheet" href="styles.css">
+  <!-- type="module" scripts are deferred automatically: they run after the HTML is parsed, so no DOMContentLoaded needed. -->
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <!-- Top bar: brand + navigation. data-route lets the router highlight the active link. -->
+  <header class="topbar">
+    <a class="brand" href="#/decks">NetCards</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#/decks" data-route="decks">Decks</a>
+      <a href="#/stats" data-route="stats">Stats</a>
+    </nav>
+  </header>
+
+  <!-- Shown by js/app.js when the browser reports it is offline (hidden attribute toggled). -->
+  <div id="offline-banner" class="banner" role="status" hidden>
+    You're offline. Studying, adding cards and stats all work. The deck library needs a connection.
+  </div>
+
+  <!-- Every screen (Decks, Deck, Study, Stats) is rendered into this element by the router. -->
+  <main id="view" class="container"></main>
+
+  <!-- Toast messages ("Card added", "New version available"). aria-live makes screen readers announce them. -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

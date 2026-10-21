@@ -1,0 +1,16 @@
+{
+  "name": "NetCards – CCNA Flashcards",
+  "short_name": "NetCards",
+  "description": "Offline-first flashcards for CCNA and networking students, with photo and voice notes and spaced repetition.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
