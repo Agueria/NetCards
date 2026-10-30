@@ -106,7 +106,7 @@ p { margin: 0 0 0.5rem; }
 .deck-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
 .deck-card h2 { margin: 0 0 4px; font-size: 1.1rem; }
 .deck-meta { margin: 0 0 12px; color: var(--muted); font-size: 0.9rem; }
-.deck-actions { display: flex; gap: 8px; }
+.deck-actions { display: flex; flex-wrap: wrap; gap: 8px; } /* wrap: three buttons do not fit side by side on a phone */
 .library { margin-top: 24px; }
 .library-item { display: flex; align-items: center; gap: 12px; padding: 12px; margin-bottom: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
 .library-item .grow { flex: 1; }
@@ -116,8 +116,8 @@ p { margin: 0 0 0.5rem; }
 .card-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 /* Each row is a <button> so it is keyboard-accessible; these rules make it look like a card. */
 .card-row { width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; font: inherit; color: inherit; cursor: pointer; }
-.card-front { margin: 0; font-weight: 600; }
-.card-meta { margin: 4px 0 0; color: var(--muted); font-size: 0.85rem; }
+.card-front { display: block; margin: 0; font-weight: 600; }  /* display: block so <span>s stack like paragraphs */
+.card-meta { display: block; margin: 4px 0 0; color: var(--muted); font-size: 0.85rem; }
 
 /* ---------- Dialogs and forms ---------- */
 /* <dialog> + showModal() gives a real modal (Escape closes it, focus stays inside) with no JS library. */
@@ -138,6 +138,7 @@ dialog::backdrop { background: rgba(15, 23, 42, 0.5); }
 .media-field { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; margin: 0; }
 .media-field legend { font-weight: 600; font-size: 0.9rem; padding: 0 4px; }
 .media-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn:has(input:focus-visible) { outline: 3px solid var(--primary); outline-offset: 2px; } /* "Choose file" label: its hidden input has keyboard focus */
 .media-preview img { display: block; max-width: 100%; max-height: 200px; border-radius: 8px; margin-bottom: 8px; }
 .media-side { margin-top: 8px; font-size: 0.9rem; }
 .media-side label { margin-left: 8px; }
@@ -157,6 +158,7 @@ dialog.camera video { width: 100%; max-height: 60vh; background: #000; border-ra
 .study-audio { margin-top: 12px; }
 .study-actions { display: flex; gap: 12px; }
 .summary { text-align: center; padding: 32px 16px; }
+@media (hover: none) { .key-hint { display: none; } } /* touch screens have no keyboard: hide "(Space)", "(1)", "(2)" */
 
 /* ---------- Stats screen ---------- */
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }

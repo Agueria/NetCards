@@ -3,6 +3,7 @@ import { $, setOfflineBanner, showToast } from './ui.js';
 import { registerRoute, startRouter } from './router.js';
 import { registerServiceWorker } from './swRegister.js';
 import { initInstall } from './install.js';
+import { updateBadge } from './badge.js';
 import * as decksView from './views/decks.js';
 import * as deckView from './views/deck.js';
 import * as studyView from './views/study.js';
@@ -37,3 +38,4 @@ if (navigator.storage && navigator.storage.persist) {
 }
 
 startRouter($('#view'));
+updateBadge(); // cards become due over time, so refresh the icon badge every time the app opens

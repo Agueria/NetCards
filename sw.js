@@ -14,7 +14,7 @@
 
 // Bump this on every release. A changed sw.js makes the browser install the new worker, which
 // precaches the new files into a NEW cache; the old cache is deleted in 'activate'.
-const CACHE_NAME = 'netcards-v5';
+const CACHE_NAME = 'netcards-v10';
 
 // Everything the app needs to start offline. cache.addAll fails completely if one URL is missing,
 // so every new file must be added here (tools/check-precache.mjs verifies this later).
@@ -37,15 +37,23 @@ const PRECACHE = [
   './js/models.js',
   './js/db.js',
   './js/scheduler.js',
+  './js/badge.js',
+  './js/media/camera.js',
   './js/views/decks.js',
+  './js/views/deckDialog.js',
   './js/views/deck.js',
+  './js/views/cardEditor.js',
+  './js/views/photoField.js',
   './js/views/study.js',
   './js/views/stats.js',
 ];
 
 // 1) install: runs once per new worker version. waitUntil keeps the worker alive until precaching ends.
+//    cache: 'reload' skips the browser's HTTP cache. GitHub Pages lets browsers reuse a file for
+//    10 minutes (Cache-Control: max-age=600); without this, a new release could precache old copies.
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE)));
+  const requests = PRECACHE.map((url) => new Request(url, { cache: 'reload' }));
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(requests)));
 });
 
 // 2) activate: the new worker is now in charge. Delete caches from older versions and take control
