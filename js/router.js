@@ -1,4 +1,4 @@
-// router.js — hash router. '#/deck/abc' → route 'deck' with param 'abc'.
+// router.js - hash router. '#/deck/abc' → route 'deck' with param 'abc'.
 //
 // Why the hash and not the History API: changing the part after '#' never sends a request to the
 // server, so the whole app is ONE cached index.html. That is exactly what we want for an offline
@@ -44,7 +44,7 @@ async function handleRoute({ keepScroll = false } = {}) {
   setActiveNav(routeName);
 
   // Screens read IndexedDB (async) before they draw. The new screen is therefore built in a
-  // detached container and swapped in only when it is complete — no empty flash while loading.
+  // detached container and swapped in only when it is complete - no empty flash while loading.
   // If the user navigates again before this render finishes, it is outdated and thrown away;
   // otherwise two screens could end up on the page at the same time.
   const renderId = ++latestRender;

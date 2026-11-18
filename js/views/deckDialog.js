@@ -1,4 +1,4 @@
-// views/deckDialog.js — <dialog> for creating a deck or editing an existing one's name/description.
+// views/deckDialog.js - <dialog> for creating a deck or editing an existing one's name/description.
 // Used by the Decks screen ("New deck") and the Deck screen ("Rename").
 import { put } from '../db.js';
 import { createDeck } from '../models.js';

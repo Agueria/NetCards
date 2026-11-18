@@ -1,8 +1,8 @@
-// views/photoField.js — the "Photo" section of the card editor: take a photo with the camera or choose a file.
+// views/photoField.js - the "Photo" section of the card editor: take a photo with the camera or choose a file.
 import { isCameraSupported, startCamera, stopCamera, capturePhoto, resizeImageFile } from '../media/camera.js';
 import { el, showToast } from '../ui.js';
 
-/** Builds the field. Returns { element, getValue(), busyReason(), dispose() } — the shape the card editor expects. */
+/** Builds the field. Returns { element, getValue(), busyReason(), dispose() } - the shape the card editor expects. */
 export function createPhotoField({ image = null, imageSide = 'front' }) {
   let currentImage = image; // Blob | null
   let previewUrl = null;    // blob URL of the preview <img>; revoked when replaced or when the editor closes
@@ -111,7 +111,7 @@ function openCameraDialog() {
     const captureButton = dialog.querySelector('[data-action="capture"]');
     let finished = false;
 
-    // One exit for Cancel, Capture and the Escape key: camera off, dialog removed, promise resolved — exactly once.
+    // One exit for Cancel, Capture and the Escape key: camera off, dialog removed, promise resolved - exactly once.
     function finish(blob) {
       if (finished) return;
       finished = true;

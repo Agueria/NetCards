@@ -1,4 +1,4 @@
-// sw.js — NetCards service worker. Pure JavaScript, no libraries.
+// sw.js - NetCards service worker. Pure JavaScript, no libraries.
 //
 // A service worker is a script the browser runs in the background, separate from the page.
 // It sits between the app and the network: every request the page makes passes through the
@@ -10,11 +10,11 @@
 //  - Deck library JSON (data/...): Stale-While-Revalidate.
 //  - Cross-origin requests: network only (the app does not use external resources).
 //
-// User data (cards, photos, audio) is NOT handled here — it lives in IndexedDB, which is offline by nature.
+// User data (cards, photos, audio) is NOT handled here - it lives in IndexedDB, which is offline by nature.
 
 // Bump this on every release. A changed sw.js makes the browser install the new worker, which
 // precaches the new files into a NEW cache; the old cache is deleted in 'activate'.
-const CACHE_NAME = 'netcards-v10';
+const CACHE_NAME = 'netcards-v11';
 
 // Everything the app needs to start offline. cache.addAll fails completely if one URL is missing,
 // so every new file must be added here (tools/check-precache.mjs verifies this later).

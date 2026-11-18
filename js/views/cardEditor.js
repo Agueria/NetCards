@@ -1,5 +1,5 @@
-// views/cardEditor.js — <dialog> for creating or editing one card.
-// Media sections (photo, voice note) plug into the data-slot elements — see photoField.js and audioField.js.
+// views/cardEditor.js - <dialog> for creating or editing one card.
+// Media fields such as the photo field (photoField.js) plug into the data-slot elements.
 import { put, remove } from '../db.js';
 import { createCard } from '../models.js';
 import { el, showToast } from '../ui.js';
@@ -34,7 +34,7 @@ export function openCardEditor({ deckId, card = null, onSaved }) {
   form.elements.front.value = card?.front ?? '';
   form.elements.back.value = card?.back ?? '';
 
-  // Media fields: each is { element, getValue(), busyReason(), dispose() }. Photo is added in Gün 13, audio in Gün 15.
+  // Media fields (for example photoField.js): each is { element, getValue(), busyReason(), dispose() }.
   const fields = [];
   const photoField = createPhotoField({ image: card?.image ?? null, imageSide: card?.imageSide ?? 'front' });
   dialog.querySelector('[data-slot="photo"]').append(photoField.element);

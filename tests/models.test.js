@@ -1,4 +1,4 @@
-// Unit tests for js/models.js — the factories that create the records stored in IndexedDB.
+// Unit tests for js/models.js - the factories that create the records stored in IndexedDB.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createDeck, createCard, createReview } from '../js/models.js';

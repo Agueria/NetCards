@@ -1,4 +1,4 @@
-// views/stats.js — placeholder, replaced in Gün 18.
+// views/stats.js - placeholder until the Stats screen is built.
 import { el } from '../ui.js';
 
 export async function render(root) {

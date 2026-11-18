@@ -1,4 +1,4 @@
-// badge.js — shows the number of due cards on the installed app's icon (Badging API).
+// badge.js - shows the number of due cards on the installed app's icon (Badging API).
 // Works in Chrome/Edge (desktop, Android) and on iOS 16.4+ for Home Screen apps; silently skipped elsewhere.
 //
 // Progressive enhancement: if the browser has no setAppBadge, the app simply works without a badge.

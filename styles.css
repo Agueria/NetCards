@@ -1,4 +1,4 @@
-/* styles.css — NetCards.
+/* styles.css - NetCards.
  *
  * Mobile-first: the base rules target a phone, @media (min-width) rules add the wider layouts.
  * All colours come from CSS variables on :root, so dark mode is a single media query that

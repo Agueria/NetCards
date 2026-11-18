@@ -1,10 +1,10 @@
-// scheduler.js — Leitner box scheduling. Pure functions: no DOM, no storage, easy to test.
+// scheduler.js - Leitner box scheduling. Pure functions: no DOM, no storage, easy to test.
 //
 // The Leitner system: cards sit in numbered boxes. Every box doubles the waiting time:
 //   box 1 → 1 day, box 2 → 2 days, box 3 → 4 days, box 4 → 8 days, box 5 → 16 days.
 // A correct answer moves the card up one box; a wrong answer sends it back to box 1 and makes it
 // due right away, so it comes back later in the same session until it is answered correctly.
-// Compared with Anki's SM-2 there are no "ease factor" constants to explain — one formula does it all.
+// Compared with Anki's SM-2 there are no "ease factor" constants to explain - one formula does it all.
 import { DAY_MS } from './dates.js';
 
 export const MAX_BOX = 5;
@@ -35,7 +35,7 @@ export function applyAnswer(card, correct, now = Date.now()) {
   return { ...card, box, due: now + intervalDays(box) * DAY_MS };
 }
 
-/** Due cards in random order (Fisher–Yates shuffle on a copy, so the input array is not touched). */
+/** Due cards in random order (Fisher-Yates shuffle on a copy, so the input array is not touched). */
 export function buildQueue(cards, now = Date.now()) {
   const queue = cards.filter((card) => isDue(card, now));
   for (let i = queue.length - 1; i > 0; i--) {

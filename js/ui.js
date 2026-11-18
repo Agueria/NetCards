@@ -1,7 +1,7 @@
-// ui.js — tiny DOM helpers plus the two global UI pieces (toast and offline banner).
+// ui.js - tiny DOM helpers plus the two global UI pieces (toast and offline banner).
 //
 // Why a helper instead of a framework: every screen builds its DOM with el(), which keeps the
-// code short and — because user text always goes through textContent — safe from HTML injection.
+// code short and - because user text always goes through textContent - safe from HTML injection.
 
 /** querySelector shortcut: $('#view') instead of document.querySelector('#view'). */
 export function $(selector, root = document) {
@@ -44,7 +44,7 @@ let toastTimer = null;
 
 /**
  * Shows a message at the bottom of the screen.
- * actionLabel/onAction add a button (used for "New version available — Reload").
+ * actionLabel/onAction add a button (used for "New version available - Reload").
  * duration 0 keeps the toast until the user clicks the action.
  */
 export function showToast(message, { actionLabel = null, onAction = null, duration = 4000 } = {}) {

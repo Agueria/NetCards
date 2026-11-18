@@ -1,4 +1,4 @@
-// views/deck.js — one deck: its cards, rename/delete, and the entry point to the card editor.
+// views/deck.js - one deck: its cards, rename/delete, and the entry point to the card editor.
 import { get, remove, getAllByIndex, removeMany } from '../db.js';
 import { countDue } from '../scheduler.js';
 import { formatDue } from '../dates.js';

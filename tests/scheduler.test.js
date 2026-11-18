@@ -1,4 +1,4 @@
-// Unit tests for js/scheduler.js — the Leitner rules. Written before the implementation (TDD).
+// Unit tests for js/scheduler.js - the Leitner rules. Written before the implementation (TDD).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { MAX_BOX, intervalDays, isDue, countDue, applyAnswer, buildQueue, advanceQueue } from '../js/scheduler.js';

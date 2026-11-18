@@ -1,6 +1,6 @@
 # NetCards
 
-Offline-first flashcards for CCNA and networking students. A Progressive Web App built with HTML, CSS and vanilla JavaScript — no frameworks.
+Offline-first flashcards for CCNA and networking students. A Progressive Web App built with HTML, CSS and vanilla JavaScript - no frameworks.
 
 **Live app:** https://agueria.github.io/netcards/
 
@@ -20,7 +20,7 @@ Then open http://localhost:8080. (`npm start` uses `npx serve`; any static serve
 
 ## Native device features
 
-### 1. Camera — photo on a card
+### 1. Camera - photo on a card
 Networking books are full of topology and subnetting diagrams. When creating a card you can tap **Take photo**:
 `navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })` opens the rear camera in a `<video>`
 preview, **Capture** draws the current frame on a `<canvas>`, scales it to at most 1024 px and encodes it as JPEG

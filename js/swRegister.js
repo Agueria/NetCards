@@ -1,8 +1,8 @@
-// swRegister.js — registers sw.js and shows a toast when a new version is waiting to take over.
+// swRegister.js - registers sw.js and shows a toast when a new version is waiting to take over.
 //
 // Service worker versions: when sw.js changes, the browser installs the new worker but keeps the
 // OLD one in control of open pages until they are all closed ("waiting" state). We do not force it
-// with skipWaiting() automatically — mixing an old page with a new cache could break things — but
+// with skipWaiting() automatically - mixing an old page with a new cache could break things - but
 // we let the user choose: "New version available → Reload".
 import { showToast } from './ui.js';
 

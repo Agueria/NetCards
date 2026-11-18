@@ -1,4 +1,4 @@
-// install.js — "Install app" support.
+// install.js - "Install app" support.
 //
 // Chromium browsers (Chrome, Edge, Android) fire `beforeinstallprompt` when the site is installable.
 // We keep that event and call prompt() on it when the user taps our own "Install app" button.

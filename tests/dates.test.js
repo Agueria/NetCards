@@ -1,4 +1,4 @@
-// Unit tests for js/dates.js — run with `npm test` (Node's built-in test runner, no dependencies).
+// Unit tests for js/dates.js - run with `npm test` (Node's built-in test runner, no dependencies).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DAY_MS, dayKey, todayKey, shiftDays, formatDue } from '../js/dates.js';

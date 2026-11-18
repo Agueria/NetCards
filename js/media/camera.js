@@ -1,6 +1,6 @@
-// media/camera.js — camera access for card photos.
+// media/camera.js - camera access for card photos.
 // Live preview via getUserMedia; the captured frame is drawn on a canvas, scaled down and encoded as JPEG
-// so a photo costs ~100–200 KB in IndexedDB instead of several MB.
+// so a photo costs ~100-200 KB in IndexedDB instead of several MB.
 let stream = null; // the running camera stream, or null
 let startId = 0;   // grows on every start and stop, so a start that finishes too late can notice it
 

@@ -1,4 +1,4 @@
-# tools/make-icons.ps1 — draws simple "NC" PNG icons for the manifest (Windows, PowerShell 7+).
+# tools/make-icons.ps1 - draws simple "NC" PNG icons for the manifest (Windows, PowerShell 7+).
 # Run from the project root:  pwsh -File tools/make-icons.ps1
 # Replace the generated PNGs with your own artwork any time; only the file names matter.
 Add-Type -AssemblyName System.Drawing

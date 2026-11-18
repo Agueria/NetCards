@@ -1,4 +1,4 @@
-// views/decks.js — "Decks" screen (home): list decks with their due counts, create a deck, start studying.
+// views/decks.js - "Decks" screen (home): list decks with their due counts, create a deck, start studying.
 import { getAll } from '../db.js';
 import { countDue } from '../scheduler.js';
 import { el } from '../ui.js';
@@ -62,7 +62,7 @@ function renderDeckList(decks, cards, now) {
   }));
 }
 
-/** Shows "Install app" (Chrome/Edge/Android), the iPhone instructions, or nothing — see install.js. */
+/** Shows "Install app" (Chrome/Edge/Android), the iPhone instructions, or nothing - see install.js. */
 function fillInstallArea(area) {
   area.replaceChildren();
   const state = getInstallState();

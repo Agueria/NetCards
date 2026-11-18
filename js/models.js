@@ -1,4 +1,4 @@
-// models.js — factories for the three record types stored in IndexedDB. Pure: no DOM, no storage.
+// models.js - factories for the three record types stored in IndexedDB. Pure: no DOM, no storage.
 //
 // Record shapes (see also db.js for the stores and indexes):
 //   deck   = { id, name, description, createdAt }
@@ -6,7 +6,7 @@
 //   review = { id, cardId, deckId, correct, date, ts }
 import { dayKey } from './dates.js';
 
-/** crypto.randomUUID() is built into browsers and Node — no library needed for unique ids. */
+/** crypto.randomUUID() is built into browsers and Node - no library needed for unique ids. */
 function newId() {
   return crypto.randomUUID();
 }

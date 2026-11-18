@@ -1,4 +1,4 @@
-// views/study.js — study session: show due cards one by one, grade them, update the schedule.
+// views/study.js - study session: show due cards one by one, grade them, update the schedule.
 // Flow: question → "Show answer" → answer (+ photo/voice note) → Wrong / Correct → next card → summary.
 import { getAll, getAllByIndex, put } from '../db.js';
 import { createReview } from '../models.js';
@@ -19,7 +19,7 @@ export async function render(root, param) {
   let answered = 0;
   let correctCount = 0;
   let nextDue = Infinity; // earliest next review among the cards answered correctly
-  let revealed = false;   // true while the answer side is visible — grading is only allowed then
+  let revealed = false;   // true while the answer side is visible - grading is only allowed then
   const objectUrls = [];  // blob URLs for photos/audio, revoked when leaving the screen
 
   const container = el('section', { className: 'study' });

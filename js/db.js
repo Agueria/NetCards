@@ -1,4 +1,4 @@
-// db.js — a very small promise wrapper around IndexedDB.
+// db.js - a very small promise wrapper around IndexedDB.
 //
 // Why IndexedDB and not localStorage: photos and voice notes are stored as Blobs, and
 // localStorage only holds ~5 MB of strings. IndexedDB is a real database inside the browser:

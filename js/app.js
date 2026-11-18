@@ -1,4 +1,4 @@
-// app.js — entry point. Wires screens, service worker, online/offline banner and install support.
+// app.js - entry point. Wires screens, service worker, online/offline banner and install support.
 import { $, setOfflineBanner, showToast } from './ui.js';
 import { registerRoute, startRouter } from './router.js';
 import { registerServiceWorker } from './swRegister.js';
@@ -16,7 +16,7 @@ registerRoute('study', studyView.render);
 registerRoute('stats', statsView.render);
 
 // Offline banner: navigator.onLine tells us whether the browser thinks it has a connection.
-// Limitation: "online" only means a network interface exists, not that the internet works —
+// Limitation: "online" only means a network interface exists, not that the internet works -
 // that is why every fetch() in the app still has its own try/catch.
 function updateOnlineStatus() {
   setOfflineBanner(!navigator.onLine);
