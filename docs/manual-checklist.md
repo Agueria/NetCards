@@ -17,6 +17,9 @@ Run this after every milestone, on desktop Chrome and on the iPhone (live GitHub
 - [ ] Application → Manifest: no warnings; "Install" icon visible in the address bar.
 - [ ] Card editor → Take photo → allow the webcam → Capture → Save: the card list shows "photo" and the webcam light turns off when the camera dialog closes. Choose file with a PNG works too; Study shows the photo on the chosen side.
 - [ ] Block the camera in the site settings → Take photo shows "Camera permission was denied…"; Choose file still works.
+- [ ] Card editor → Record → allow the microphone → speak → Stop: a player appears and plays the note. Save: the card list shows "voice note" and Study plays it on the answer side. The microphone indicator turns off after Stop.
+- [ ] While recording, tap Save: "Stop the recording first." and the dialog stays open. Press Escape while recording: the dialog closes and the microphone indicator turns off.
+- [ ] Block the microphone in the site settings → Record shows "Microphone permission was denied…"; the card can still be saved.
 
 ## iPhone (Safari, live URL)
 - [ ] Page loads; "Install NetCards" hint shows; "Got it" hides it permanently.

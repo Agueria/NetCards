@@ -14,7 +14,7 @@
 
 // Bump this on every release. A changed sw.js makes the browser install the new worker, which
 // precaches the new files into a NEW cache; the old cache is deleted in 'activate'.
-const CACHE_NAME = 'netcards-v11';
+const CACHE_NAME = 'netcards-v12';
 
 // Everything the app needs to start offline. cache.addAll fails completely if one URL is missing,
 // so every new file must be added here (tools/check-precache.mjs verifies this later).
@@ -39,11 +39,13 @@ const PRECACHE = [
   './js/scheduler.js',
   './js/badge.js',
   './js/media/camera.js',
+  './js/media/recorder.js',
   './js/views/decks.js',
   './js/views/deckDialog.js',
   './js/views/deck.js',
   './js/views/cardEditor.js',
   './js/views/photoField.js',
+  './js/views/audioField.js',
   './js/views/study.js',
   './js/views/stats.js',
 ];

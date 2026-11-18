@@ -1,9 +1,10 @@
 // views/cardEditor.js - <dialog> for creating or editing one card.
-// Media fields such as the photo field (photoField.js) plug into the data-slot elements.
+// Media fields (photoField.js, audioField.js) plug into the data-slot elements.
 import { put, remove } from '../db.js';
 import { createCard } from '../models.js';
 import { el, showToast } from '../ui.js';
 import { createPhotoField } from './photoField.js';
+import { createAudioField } from './audioField.js';
 import { updateBadge } from '../badge.js';
 
 /** Opens the editor. Pass `card` to edit it; leave it out to add a new card to `deckId`. */
@@ -34,11 +35,14 @@ export function openCardEditor({ deckId, card = null, onSaved }) {
   form.elements.front.value = card?.front ?? '';
   form.elements.back.value = card?.back ?? '';
 
-  // Media fields (for example photoField.js): each is { element, getValue(), busyReason(), dispose() }.
+  // Media fields (photoField.js, audioField.js): each is { element, getValue(), busyReason(), dispose() }.
   const fields = [];
   const photoField = createPhotoField({ image: card?.image ?? null, imageSide: card?.imageSide ?? 'front' });
   dialog.querySelector('[data-slot="photo"]').append(photoField.element);
   fields.push(photoField);
+  const audioField = createAudioField({ audio: card?.audio ?? null, audioType: card?.audioType ?? '' });
+  dialog.querySelector('[data-slot="audio"]').append(audioField.element);
+  fields.push(audioField);
 
   dialog.querySelector('[data-action="cancel"]').addEventListener('click', () => dialog.close());
 
